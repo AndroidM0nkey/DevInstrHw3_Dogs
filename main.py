@@ -78,6 +78,14 @@ async def get_dog_pk(pk: int):
     return {}
 
 
+@app.get("/dogs")
+async def get_dogs():
+    ans = []
+    for index, dog in dogs_db.items():
+        ans.append(dog)
+    return ans
+
+
 @app.patch("/dog/{pk}")
 async def get_dog_pk(pk: int, new_dog: Dog):
     for index, dog in dogs_db.items():
@@ -85,4 +93,3 @@ async def get_dog_pk(pk: int, new_dog: Dog):
             dogs_db[index] = new_dog
             return new_dog
     return {}
-
